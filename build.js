@@ -14,6 +14,14 @@ const md = new MarkdownIt({
   typographer: true
 });
 
+// Base URL for GitHub Pages or custom domains (default to root)
+const BASE_URL = process.env.BASE_URL || '';
+
+// Register Handlebars helper for base URL
+Handlebars.registerHelper('baseUrl', function(path) {
+  return BASE_URL + path;
+});
+
 // Directories (convention over configuration)
 const CONTENT_DIR = './content';
 const TEMPLATES_DIR = './templates';
