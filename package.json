@@ -1,0 +1,57 @@
+{
+  "name": "minuto",
+  "version": "0.0.1",
+  "author": "delaudio",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/delaudio/minuto.git"
+  },
+  "main": "build.js",
+  "dependencies": {
+    "commander": "^14.0.2",
+    "gray-matter": "^4.0.3",
+    "handlebars": "^4.7.8",
+    "markdown-it": "^14.0.0"
+  },
+  "bin": {
+    "minuto": "./bin/minuto.js"
+  },
+  "bugs": {
+    "url": "https://github.com/delaudio/minuto/issues"
+  },
+  "description": "Minimal static site generator for markdown content with Alpine.js and Tailwind support",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": [
+    "bin/",
+    "build.js",
+    "serve.js",
+    "dev.js",
+    "init.js",
+    "README.md",
+    "CHANGELOG.md"
+  ],
+  "homepage": "https://github.com/delaudio/minuto#readme",
+  "keywords": [
+    "static-site",
+    "static-site-generator",
+    "markdown",
+    "handlebars",
+    "alpine",
+    "tailwind",
+    "blog",
+    "minimal",
+    "pico"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "node build.js",
+    "serve": "node serve.js",
+    "dev": "node dev.js",
+    "test": "bun test"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "4.1.16"
+  }
+}

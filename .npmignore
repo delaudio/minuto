@@ -1,0 +1,36 @@
+# Development files
+test-fixtures/
+*.test.js
+.git/
+.gitignore
+
+# Example/demo content
+content/
+templates/
+static/
+styles/
+build/
+
+# Development configs
+tailwind.config.js
+tsconfig.json
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Dependencies
+node_modules/
