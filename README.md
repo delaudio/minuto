@@ -55,10 +55,45 @@ npx minuto serve
 
 ## Commands
 
-- `minuto init` - Initialize a new project with example content
+- `minuto init [directory] [--template <type>]` - Initialize a new project with example content
+  - Templates: `default`, `blog`, `portfolio`, `docs`
 - `minuto build` - Build the static site
 - `minuto serve` - Serve the built site locally (http://localhost:3000)
 - `minuto dev` - Watch for changes and rebuild automatically + serve
+
+## Templates
+
+Minuto comes with several starter templates:
+
+### Default Template
+A clean, minimal template perfect for simple websites.
+
+```bash
+npx minuto init my-site
+# or
+npx minuto init my-site --template default
+```
+
+### Blog Template
+Optimized for blogging with post layouts and beautiful typography.
+
+```bash
+npx minuto init my-blog --template blog
+```
+
+### Portfolio Template
+Showcase your projects with a modern, dark-themed portfolio.
+
+```bash
+npx minuto init my-portfolio --template portfolio
+```
+
+### Documentation Template
+Perfect for documentation sites with sidebar navigation.
+
+```bash
+npx minuto init my-docs --template docs
+```
 
 ## Directory Structure
 

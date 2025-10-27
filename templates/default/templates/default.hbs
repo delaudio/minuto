@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="/styles/main.css">
+</head>
+<body class="bg-gray-50">
+    {{> header}}
+
+    <main class="max-w-4xl mx-auto px-4 py-8">
+        <article class="prose prose-lg max-w-none bg-white rounded-lg shadow-md p-8">
+            {{{content}}}
+        </article>
+    </main>
+
+    {{> footer}}
+</body>
+</html>

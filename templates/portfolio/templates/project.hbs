@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}} - Portfolio</title>
+    <link rel="stylesheet" href="/styles/main.css">
+</head>
+<body class="bg-gray-900 text-gray-100">
+    {{> header}}
+
+    <main class="max-w-4xl mx-auto px-4 py-16">
+        <article>
+            <header class="mb-8">
+                {{#if tech}}
+                <div class="flex flex-wrap gap-2 mb-4">
+                    {{#each (split tech ",")}}
+                    <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm">{{this}}</span>
+                    {{/each}}
+                </div>
+                {{/if}}
+            </header>
+
+            <div class="prose prose-invert prose-lg max-w-none">
+                {{{content}}}
+            </div>
+
+            <footer class="mt-12 pt-6 border-t border-gray-700">
+                <a href="/" class="text-blue-400 hover:text-blue-300 font-medium">
+                    ← Back to portfolio
+                </a>
+            </footer>
+        </article>
+    </main>
+
+    {{> footer}}
+</body>
+</html>

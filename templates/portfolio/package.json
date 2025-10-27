@@ -1,0 +1,13 @@
+{
+  "name": "my-portfolio",
+  "version": "0.0.3",
+  "description": "A portfolio built with Minuto",
+  "scripts": {
+    "dev": "minuto dev",
+    "build": "minuto build",
+    "serve": "minuto serve"
+  },
+  "keywords": ["portfolio", "minuto"],
+  "author": "delaudio",
+  "license": "MIT"
+}

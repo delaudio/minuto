@@ -1,6 +1,6 @@
 {
   "name": "minuto",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "delaudio",
   "repository": {
     "type": "git",
@@ -29,6 +29,8 @@
     "serve.js",
     "dev.js",
     "init.js",
+    "templates/",
+    "docs/",
     "README.md",
     "CHANGELOG.md"
   ],

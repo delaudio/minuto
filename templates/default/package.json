@@ -1,0 +1,13 @@
+{
+  "name": "my-minuto-site",
+  "version": "0.0.3",
+  "description": "A static site built with Minuto",
+  "scripts": {
+    "dev": "minuto dev",
+    "build": "minuto build",
+    "serve": "minuto serve"
+  },
+  "keywords": [],
+  "author": "delaudio",
+  "license": "MIT"
+}

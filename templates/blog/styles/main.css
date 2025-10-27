@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+/* Blog-specific styles */
+.prose {
+  @apply text-gray-800;
+}
+
+.prose h1 {
+  @apply text-4xl font-bold mb-6 text-gray-900;
+}
+
+.prose h2 {
+  @apply text-3xl font-bold mt-8 mb-4 text-gray-900;
+}
+
+.prose h3 {
+  @apply text-2xl font-semibold mt-6 mb-3 text-gray-800;
+}
+
+.prose p {
+  @apply mb-4 leading-relaxed text-gray-700;
+}
+
+.prose a {
+  @apply text-blue-600 hover:text-blue-800 underline transition;
+}
+
+.prose code {
+  @apply bg-gray-100 px-2 py-1 rounded text-sm font-mono text-pink-600;
+}
+
+.prose pre {
+  @apply bg-gray-900 text-gray-100 p-6 rounded-xl overflow-x-auto mb-6 shadow-lg;
+}
+
+.prose pre code {
+  @apply bg-transparent text-gray-100 p-0;
+}
+
+.prose ul {
+  @apply list-disc list-inside mb-4 space-y-2;
+}
+
+.prose ol {
+  @apply list-decimal list-inside mb-4 space-y-2;
+}
+
+.prose blockquote {
+  @apply border-l-4 border-blue-500 pl-6 italic text-gray-700 my-6 bg-blue-50 py-4 rounded-r;
+}
+
+.prose strong {
+  @apply font-bold text-gray-900;
+}
+
+.prose img {
+  @apply rounded-lg shadow-md my-6;
+}

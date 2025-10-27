@@ -1,0 +1,14 @@
+{
+  "name": "minuto-docs",
+  "version": "0.0.3",
+  "description": "Documentation for Minuto static site generator",
+  "private": true,
+  "scripts": {
+    "dev": "node ../dev.js",
+    "build": "node ../build.js",
+    "serve": "node ../serve.js"
+  },
+  "keywords": [],
+  "author": "delaudio",
+  "license": "MIT"
+}

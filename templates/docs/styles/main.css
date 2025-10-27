@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+/* Documentation-specific styles */
+.prose {
+  @apply text-gray-800;
+}
+
+.prose h1 {
+  @apply text-4xl font-bold mb-6 text-gray-900 border-b border-gray-200 pb-4;
+}
+
+.prose h2 {
+  @apply text-3xl font-bold mt-10 mb-4 text-gray-900;
+}
+
+.prose h3 {
+  @apply text-2xl font-semibold mt-8 mb-3 text-gray-900;
+}
+
+.prose p {
+  @apply mb-4 leading-relaxed;
+}
+
+.prose a {
+  @apply text-blue-600 hover:text-blue-800 underline;
+}
+
+.prose code {
+  @apply bg-blue-50 border border-blue-200 px-1.5 py-0.5 rounded text-sm font-mono text-blue-700;
+}
+
+.prose pre {
+  @apply bg-gray-900 text-gray-100 p-6 rounded-lg overflow-x-auto mb-6 border border-gray-700;
+}
+
+.prose pre code {
+  @apply bg-transparent text-gray-100 p-0 border-0;
+}
+
+.prose ul {
+  @apply list-disc list-inside mb-4 space-y-2;
+}
+
+.prose ol {
+  @apply list-decimal list-inside mb-4 space-y-2;
+}
+
+.prose blockquote {
+  @apply border-l-4 border-blue-500 pl-4 italic text-gray-700 my-4 bg-blue-50 py-2;
+}
+
+.prose table {
+  @apply w-full border-collapse mb-4;
+}
+
+.prose th {
+  @apply bg-gray-100 border border-gray-300 px-4 py-2 text-left font-semibold;
+}
+
+.prose td {
+  @apply border border-gray-300 px-4 py-2;
+}

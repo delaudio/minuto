@@ -39,11 +39,22 @@ program
   });
 
 program
-  .command('init')
+  .command('init [directory]')
   .description('Initialize a new Minuto project with example content')
-  .action(() => {
+  .option('-t, --template <type>', 'Template to use (default, blog, portfolio, docs)', 'default')
+  .action((directory, options) => {
     const initScript = path.join(__dirname, '../init.js');
-    const init = spawn('node', [initScript], { stdio: 'inherit' });
+    const args = [initScript];
+
+    if (directory) {
+      args.push(directory);
+    }
+
+    if (options.template) {
+      args.push('--template', options.template);
+    }
+
+    const init = spawn('node', args, { stdio: 'inherit' });
     init.on('exit', (code) => process.exit(code));
   });
 

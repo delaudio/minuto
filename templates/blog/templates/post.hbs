@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}} - My Blog</title>
+    <link rel="stylesheet" href="/styles/main.css">
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-50 min-h-screen">
+    {{> header}}
+
+    <main class="max-w-3xl mx-auto px-4 py-12">
+        <article class="bg-white rounded-2xl shadow-xl p-8 md:p-12">
+            <header class="mb-8 pb-6 border-b border-gray-200">
+                <h1 class="text-4xl font-bold mb-4 text-gray-900">{{title}}</h1>
+                {{#if author}}
+                <div class="flex items-center text-gray-600">
+                    <span class="font-medium">{{author}}</span>
+                    {{#if date}}
+                    <span class="mx-2">•</span>
+                    <time>{{date}}</time>
+                    {{/if}}
+                </div>
+                {{/if}}
+            </header>
+
+            <div class="prose prose-lg max-w-none">
+                {{{content}}}
+            </div>
+
+            <footer class="mt-12 pt-6 border-t border-gray-200">
+                <a href="/" class="text-blue-600 hover:text-blue-800 font-medium">
+                    ← Back to home
+                </a>
+            </footer>
+        </article>
+    </main>
+
+    {{> footer}}
+</body>
+</html>

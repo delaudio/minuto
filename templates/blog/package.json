@@ -1,0 +1,13 @@
+{
+  "name": "my-blog",
+  "version": "0.0.3",
+  "description": "A blog built with Minuto",
+  "scripts": {
+    "dev": "minuto dev",
+    "build": "minuto build",
+    "serve": "minuto serve"
+  },
+  "keywords": ["blog", "minuto"],
+  "author": "delaudio",
+  "license": "MIT"
+}

@@ -1,0 +1,13 @@
+{
+  "name": "my-docs",
+  "version": "0.0.3",
+  "description": "Documentation site built with Minuto",
+  "scripts": {
+    "dev": "minuto dev",
+    "build": "minuto build",
+    "serve": "minuto serve"
+  },
+  "keywords": ["documentation", "minuto"],
+  "author": "delaudio",
+  "license": "MIT"
+}

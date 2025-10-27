@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+/* Portfolio dark theme styles */
+.prose-invert {
+  @apply text-gray-100;
+}
+
+.prose-invert h1 {
+  @apply text-5xl font-bold mb-6 text-white;
+}
+
+.prose-invert h2 {
+  @apply text-3xl font-bold mt-8 mb-4 text-white border-b border-gray-700 pb-2;
+}
+
+.prose-invert h3 {
+  @apply text-2xl font-semibold mt-6 mb-3 text-gray-100;
+}
+
+.prose-invert p {
+  @apply mb-4 leading-relaxed text-gray-300;
+}
+
+.prose-invert a {
+  @apply text-blue-400 hover:text-blue-300 underline transition;
+}
+
+.prose-invert code {
+  @apply bg-gray-800 px-2 py-1 rounded text-sm font-mono text-blue-300;
+}
+
+.prose-invert pre {
+  @apply bg-gray-800 text-gray-100 p-6 rounded-xl overflow-x-auto mb-6 border border-gray-700;
+}
+
+.prose-invert pre code {
+  @apply bg-transparent text-gray-100 p-0;
+}
+
+.prose-invert ul {
+  @apply list-disc list-inside mb-4 space-y-2 text-gray-300;
+}
+
+.prose-invert ol {
+  @apply list-decimal list-inside mb-4 space-y-2 text-gray-300;
+}
+
+.prose-invert strong {
+  @apply font-bold text-white;
+}

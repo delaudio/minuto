@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}} - Documentation</title>
+    <link rel="stylesheet" href="/styles/main.css">
+</head>
+<body class="bg-gray-50">
+    {{> header}}
+
+    <div class="flex">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-white min-h-screen border-r border-gray-200 fixed left-0 top-16 overflow-y-auto">
+            {{> sidebar}}
+        </aside>
+
+        <!-- Main content -->
+        <main class="flex-1 ml-64 p-8">
+            <article class="max-w-4xl mx-auto prose prose-lg">
+                {{{content}}}
+            </article>
+        </main>
+    </div>
+</body>
+</html>
