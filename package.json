@@ -30,7 +30,6 @@
     "dev.js",
     "init.js",
     "templates/",
-    "docs/",
     "README.md",
     "CHANGELOG.md"
   ],
