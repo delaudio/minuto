@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 const PORT = 3000;
-const BUILD_DIR = path.join(__dirname, 'build');
+const BUILD_DIR = path.join(process.cwd(), 'build');
 
 const MIME_TYPES = {
   '.html': 'text/html',

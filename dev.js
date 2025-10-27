@@ -18,7 +18,7 @@ function build() {
   building = true;
   console.log('\n🔄 Rebuilding...');
 
-  const buildProcess = spawn('node', ['build.js'], { stdio: 'inherit' });
+  const buildProcess = spawn('node', [path.join(__dirname, 'build.js')], { stdio: 'inherit' });
 
   buildProcess.on('close', (code) => {
     building = false;
@@ -67,7 +67,7 @@ WATCH_DIRS.forEach(watchDir);
 
 // Start server
 console.log('🚀 Starting server...');
-const serverProcess = spawn('node', ['serve.js'], { stdio: 'inherit' });
+const serverProcess = spawn('node', [path.join(__dirname, 'serve.js')], { stdio: 'inherit' });
 
 // Cleanup on exit
 process.on('SIGINT', () => {
