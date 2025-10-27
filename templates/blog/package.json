@@ -1,6 +1,6 @@
 {
   "name": "my-blog",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A blog built with Minuto",
   "scripts": {
     "dev": "minuto dev",

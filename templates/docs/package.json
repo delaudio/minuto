@@ -1,6 +1,6 @@
 {
   "name": "my-docs",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Documentation site built with Minuto",
   "scripts": {
     "dev": "minuto dev",

@@ -1,6 +1,6 @@
 {
   "name": "minuto-docs",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Documentation for Minuto static site generator",
   "private": true,
   "scripts": {
