@@ -1,6 +1,6 @@
 {
   "name": "my-minuto-site",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "A static site built with Minuto",
   "scripts": {
     "dev": "minuto dev",
@@ -11,7 +11,7 @@
   "author": "delaudio",
   "license": "MIT",
   "dependencies": {
-    "minuto": "^0.0.5"
+    "minuto": "^0.0.6"
   },
   "devDependencies": {
     "@tailwindcss/cli": "4.1.16"
