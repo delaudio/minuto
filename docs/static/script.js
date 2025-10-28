@@ -29,6 +29,36 @@ if (themeToggle) {
 // Initialize theme on load
 initTheme();
 
+// Mobile menu toggle
+const mobileMenuToggle = document.getElementById("mobile-menu-toggle");
+const mobileSidebar = document.getElementById("mobile-sidebar");
+const mobileOverlay = document.getElementById("mobile-overlay");
+
+const openMobileMenu = () => {
+  mobileSidebar.classList.remove("translate-x-full");
+  mobileOverlay.classList.remove("hidden");
+  document.body.style.overflow = "hidden";
+};
+
+const closeMobileMenu = () => {
+  mobileSidebar.classList.add("translate-x-full");
+  mobileOverlay.classList.add("hidden");
+  document.body.style.overflow = "";
+};
+
+if (mobileMenuToggle) {
+  mobileMenuToggle.addEventListener("click", openMobileMenu);
+}
+
+if (mobileOverlay) {
+  mobileOverlay.addEventListener("click", closeMobileMenu);
+}
+
+// Close mobile menu when clicking a link
+document.querySelectorAll("#mobile-sidebar a").forEach((link) => {
+  link.addEventListener("click", closeMobileMenu);
+});
+
 // Collapsible sidebar sections
 document.querySelectorAll(".sidebar-category-header").forEach((header) => {
   header.addEventListener("click", () => {
@@ -46,15 +76,7 @@ const currentPath = window.location.pathname;
 document.querySelectorAll(".sidebar-link").forEach((link) => {
   const href = link.getAttribute("href");
   if (href === currentPath || (currentPath === "/" && href === "/")) {
-    link.classList.add(
-      "active-link",
-      "text-blue-600",
-      "bg-blue-50",
-      "dark:bg-blue-900/30",
-      "dark:text-blue-400",
-      "font-medium"
-    );
-    link.classList.remove("text-gray-600");
+    link.classList.add("active-link");
   }
 });
 
@@ -80,7 +102,7 @@ const generateTOC = () => {
       heading.id = id;
 
       const level = heading.tagName === "H2" ? "pl-0" : "pl-4";
-      return `<a href="#${id}" class="toc-link block py-1 ${level} text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">${heading.textContent}</a>`;
+      return `<a href="#${id}" class="toc-link block py-1 ${level} text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white">${heading.textContent}</a>`;
     })
     .join("");
 
@@ -106,9 +128,6 @@ const highlightTOCOnScroll = () => {
           tocLinks.forEach((link) => {
             const isActive = link.getAttribute("href") === `#${id}`;
             link.classList.toggle("toc-active", isActive);
-            link.classList.toggle("text-blue-600", isActive);
-            link.classList.toggle("dark:text-blue-400", isActive);
-            link.classList.toggle("font-medium", isActive);
           });
         }
       });

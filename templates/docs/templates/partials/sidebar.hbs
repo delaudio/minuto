@@ -1,25 +1,102 @@
-<nav class="p-6">
-    <div class="mb-6">
-        <h3 class="font-semibold text-gray-900 mb-2">Getting Started</h3>
-        <ul class="space-y-1">
-            <li><a href="/" class="block py-1 text-gray-600 hover:text-blue-600">Overview</a></li>
-            <li><a href="/installation.html" class="block py-1 text-gray-600 hover:text-blue-600">Installation</a></li>
-            <li><a href="/quick-start.html" class="block py-1 text-gray-600 hover:text-blue-600">Quick Start</a></li>
-        </ul>
-    </div>
+<nav class="sidebar-nav p-6">
+  <div class="sidebar-section mb-6">
+    <button
+      class="sidebar-category-header flex items-center justify-between w-full font-semibold text-gray-900 mb-2 hover:text-blue-600 transition-colors"
+      data-category="getting-started"
+    >
+      <span>Getting Started</span>
+      <svg
+        class="w-4 h-4 transition-transform category-arrow"
+        fill="currentColor"
+        viewBox="0 0 20 20"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+          clip-rule="evenodd"
+        ></path>
+      </svg>
+    </button>
+    <ul
+      class="sidebar-items space-y-1 pl-2"
+      data-category-items="getting-started"
+    >
+      <li><a
+          href="/"
+          class="sidebar-link block py-1.5 px-3 text-sm text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded transition-colors"
+        >Overview</a></li>
+      <li><a
+          href="/installation.html"
+          class="sidebar-link block py-1.5 px-3 text-sm text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded transition-colors"
+        >Installation</a></li>
+      <li><a
+          href="/usage.html"
+          class="sidebar-link block py-1.5 px-3 text-sm text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded transition-colors"
+        >Usage</a></li>
+    </ul>
+  </div>
 
-    <div class="mb-6">
-        <h3 class="font-semibold text-gray-900 mb-2">Guides</h3>
-        <ul class="space-y-1">
-            <li><a href="/guides/guide-1.html" class="block py-1 text-gray-600 hover:text-blue-600">Guide 1</a></li>
-            <li><a href="/guides/guide-2.html" class="block py-1 text-gray-600 hover:text-blue-600">Guide 2</a></li>
-        </ul>
-    </div>
+  <div class="sidebar-section mb-6">
+    <button
+      class="sidebar-category-header flex items-center justify-between w-full font-semibold text-gray-900 mb-2 hover:text-blue-600 transition-colors"
+      data-category="templates"
+    >
+      <span>Templates</span>
+      <svg
+        class="w-4 h-4 transition-transform category-arrow"
+        fill="currentColor"
+        viewBox="0 0 20 20"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+          clip-rule="evenodd"
+        ></path>
+      </svg>
+    </button>
+    <ul class="sidebar-items space-y-1 pl-2" data-category-items="templates">
+      <li><a
+          href="/templates.html"
+          class="sidebar-link block py-1.5 px-3 text-sm text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded transition-colors"
+        >Overview</a></li>
+      <li><a
+          href="/templates/blog.html"
+          class="sidebar-link block py-1.5 px-3 text-sm text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded transition-colors"
+        >Blog Template</a></li>
+      <li><a
+          href="/templates/docs.html"
+          class="sidebar-link block py-1.5 px-3 text-sm text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded transition-colors"
+        >Docs Template</a></li>
+    </ul>
+  </div>
 
-    <div class="mb-6">
-        <h3 class="font-semibold text-gray-900 mb-2">API Reference</h3>
-        <ul class="space-y-1">
-            <li><a href="/api/overview.html" class="block py-1 text-gray-600 hover:text-blue-600">Overview</a></li>
-        </ul>
-    </div>
+  <div class="sidebar-section mb-6">
+    <button
+      class="sidebar-category-header flex items-center justify-between w-full font-semibold text-gray-900 mb-2 hover:text-blue-600 transition-colors"
+      data-category="api"
+    >
+      <span>API Reference</span>
+      <svg
+        class="w-4 h-4 transition-transform category-arrow"
+        fill="currentColor"
+        viewBox="0 0 20 20"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+          clip-rule="evenodd"
+        ></path>
+      </svg>
+    </button>
+    <ul class="sidebar-items space-y-1 pl-2" data-category-items="api">
+      <li><a
+          href="/api/overview.html"
+          class="sidebar-link block py-1.5 px-3 text-sm text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded transition-colors"
+        >Overview</a></li>
+      <li><a
+          href="/api/config.html"
+          class="sidebar-link block py-1.5 px-3 text-sm text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded transition-colors"
+        >Configuration</a></li>
+    </ul>
+  </div>
 </nav>

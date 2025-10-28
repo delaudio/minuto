@@ -1,50 +1,175 @@
 @import "tailwindcss";
 
-/* Custom styles for documentation */
+/* Minimal grayscale documentation styles */
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar for webkit browsers */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100 dark:bg-gray-900;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 dark:bg-gray-700;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-400 dark:bg-gray-600;
+}
+
+/* Sidebar styles */
+.sidebar-nav {
+  scrollbar-width: thin;
+}
+
+.sidebar-category-header {
+  cursor: pointer;
+}
+
+.category-arrow {
+  transition: transform 0.15s ease;
+}
+
+.category-arrow.rotate-180 {
+  transform: rotate(180deg);
+}
+
+.sidebar-link.active-link {
+  position: relative;
+  @apply text-black dark:text-white;
+}
+
+/* Table of Contents */
+.toc-sidebar {
+  scrollbar-width: thin;
+}
+
+.toc-link {
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.toc-link.toc-active {
+  @apply text-black dark:text-white;
+}
+
+/* Responsive layout adjustments */
+@media (max-width: 1280px) {
+  .toc-sidebar {
+    display: none;
+  }
+
+  .main-content {
+    margin-right: 0 !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    display: none;
+  }
+
+  .main-content {
+    margin-left: 0 !important;
+  }
+}
+
+/* Prose (content) styles - minimal grayscale */
 .prose {
-    @apply text-gray-800;
+  @apply text-gray-700 dark:text-gray-300;
 }
 
 .prose h1 {
-    @apply text-4xl font-bold mb-6 text-gray-900;
+  @apply text-3xl mb-6 text-black dark:text-white border-b border-gray-300 dark:border-gray-700 pb-4;
+  scroll-margin-top: 4rem;
 }
 
 .prose h2 {
-    @apply text-3xl font-bold mt-8 mb-4 text-gray-900;
+  @apply text-2xl mt-10 mb-4 text-black dark:text-white;
+  scroll-margin-top: 4rem;
+}
+
+.prose h2::before {
+  content: "";
+  display: block;
+  height: 4rem;
+  margin-top: -4rem;
+  visibility: hidden;
 }
 
 .prose h3 {
-    @apply text-2xl font-semibold mt-6 mb-3 text-gray-900;
+  @apply text-xl mt-8 mb-3 text-black dark:text-white;
+  scroll-margin-top: 4rem;
+}
+
+.prose h3::before {
+  content: "";
+  display: block;
+  height: 4rem;
+  margin-top: -4rem;
+  visibility: hidden;
 }
 
 .prose p {
-    @apply mb-4 leading-relaxed;
+  @apply mb-4 leading-relaxed;
 }
 
 .prose a {
-    @apply text-blue-600 hover:text-blue-800 underline;
+  @apply text-gray-700 dark:text-gray-300 underline hover:text-black dark:hover:text-white;
 }
 
 .prose code {
-    @apply bg-gray-100 px-1.5 py-0.5 rounded text-sm font-mono text-red-600;
+  @apply bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 text-sm font-mono text-gray-800 dark:text-gray-200;
 }
 
 .prose pre {
-    @apply bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto mb-4;
+  @apply bg-black dark:bg-gray-950 text-white p-4 overflow-x-auto mb-6 border border-gray-300 dark:border-gray-800;
 }
 
 .prose pre code {
-    @apply bg-transparent text-gray-100 p-0;
+  @apply bg-transparent text-white p-0;
 }
 
 .prose ul {
-    @apply list-disc list-inside mb-4 space-y-2;
+  @apply list-disc ml-6 mb-4 space-y-2;
 }
 
 .prose ol {
-    @apply list-decimal list-inside mb-4 space-y-2;
+  @apply list-decimal ml-6 mb-4 space-y-2;
+}
+
+.prose li {
+  @apply pl-2;
 }
 
 .prose blockquote {
-    @apply border-l-4 border-blue-500 pl-4 italic text-gray-700 my-4;
+  @apply border-l-2 border-gray-400 dark:border-gray-600 pl-4 text-gray-600 dark:text-gray-400 my-4;
+}
+
+.prose table {
+  @apply w-full border-collapse mb-6;
+}
+
+.prose th {
+  @apply bg-gray-100 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 px-4 py-2 text-left;
+}
+
+.prose td {
+  @apply border border-gray-300 dark:border-gray-700 px-4 py-2;
+}
+
+.prose img {
+  @apply mb-4;
+}
+
+.prose hr {
+  @apply border-gray-300 dark:border-gray-700 my-8;
 }

@@ -1,20 +1,146 @@
 @import "tailwindcss";
 
-/* Documentation-specific styles */
+/* Docusaurus-inspired documentation styles */
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar for webkit browsers */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100 dark:bg-gray-800;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 dark:bg-gray-600 rounded;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-400 dark:bg-gray-500;
+}
+
+/* Navbar */
+.navbar {
+  backdrop-filter: blur(8px);
+}
+
+/* Sidebar styles */
+.sidebar-nav {
+  scrollbar-width: thin;
+}
+
+.sidebar-category-header {
+  cursor: pointer;
+}
+
+.category-arrow {
+  transition: transform 0.2s ease;
+}
+
+.category-arrow.rotate-180 {
+  transform: rotate(180deg);
+}
+
+.sidebar-link.active-link {
+  position: relative;
+}
+
+.sidebar-link.active-link::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  @apply bg-blue-600 dark:bg-blue-400;
+}
+
+/* Table of Contents */
+.toc-sidebar {
+  scrollbar-width: thin;
+}
+
+.toc-link {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  transition: all 0.15s ease;
+}
+
+.toc-link.toc-active {
+  position: relative;
+}
+
+.toc-link.toc-active::before {
+  content: "";
+  position: absolute;
+  left: -1rem;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  @apply bg-blue-600 dark:bg-blue-400;
+}
+
+/* Responsive layout adjustments */
+@media (max-width: 1280px) {
+  .toc-sidebar {
+    display: none;
+  }
+
+  .main-content {
+    margin-right: 0 !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    display: none;
+  }
+
+  .main-content {
+    margin-left: 0 !important;
+  }
+}
+
+/* Prose (content) styles */
 .prose {
-  @apply text-gray-800;
+  @apply text-gray-800 dark:text-gray-200;
 }
 
 .prose h1 {
-  @apply text-4xl font-bold mb-6 text-gray-900 border-b border-gray-200 pb-4;
+  @apply text-4xl font-bold mb-6 text-gray-900 dark:text-gray-100 border-b border-gray-200 dark:border-gray-700 pb-4;
+  scroll-margin-top: 5rem;
 }
 
 .prose h2 {
-  @apply text-3xl font-bold mt-10 mb-4 text-gray-900;
+  @apply text-3xl font-bold mt-10 mb-4 text-gray-900 dark:text-gray-100;
+  scroll-margin-top: 5rem;
+}
+
+.prose h2::before {
+  content: "";
+  display: block;
+  height: 5rem;
+  margin-top: -5rem;
+  visibility: hidden;
 }
 
 .prose h3 {
-  @apply text-2xl font-semibold mt-8 mb-3 text-gray-900;
+  @apply text-2xl font-semibold mt-8 mb-3 text-gray-900 dark:text-gray-100;
+  scroll-margin-top: 5rem;
+}
+
+.prose h3::before {
+  content: "";
+  display: block;
+  height: 5rem;
+  margin-top: -5rem;
+  visibility: hidden;
 }
 
 .prose p {
@@ -22,15 +148,16 @@
 }
 
 .prose a {
-  @apply text-blue-600 hover:text-blue-800 underline;
+  @apply text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 underline decoration-blue-400 dark:decoration-blue-600 underline-offset-2;
+  transition: color 0.15s ease;
 }
 
 .prose code {
-  @apply bg-blue-50 border border-blue-200 px-1.5 py-0.5 rounded text-sm font-mono text-blue-700;
+  @apply bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 px-1.5 py-0.5 rounded text-sm font-mono text-blue-700 dark:text-blue-300;
 }
 
 .prose pre {
-  @apply bg-gray-900 text-gray-100 p-6 rounded-lg overflow-x-auto mb-6 border border-gray-700;
+  @apply bg-gray-900 dark:bg-gray-950 text-gray-100 p-6 rounded-lg overflow-x-auto mb-6 border border-gray-700 dark:border-gray-800;
 }
 
 .prose pre code {
@@ -38,25 +165,72 @@
 }
 
 .prose ul {
-  @apply list-disc list-inside mb-4 space-y-2;
+  @apply list-disc ml-6 mb-4 space-y-2;
 }
 
 .prose ol {
-  @apply list-decimal list-inside mb-4 space-y-2;
+  @apply list-decimal ml-6 mb-4 space-y-2;
+}
+
+.prose li {
+  @apply pl-2;
 }
 
 .prose blockquote {
-  @apply border-l-4 border-blue-500 pl-4 italic text-gray-700 my-4 bg-blue-50 py-2;
+  @apply border-l-4 border-blue-500 dark:border-blue-600 pl-4 italic text-gray-700 dark:text-gray-300 my-4 bg-blue-50 dark:bg-blue-900/20 py-2;
 }
 
 .prose table {
-  @apply w-full border-collapse mb-4;
+  @apply w-full border-collapse mb-6;
 }
 
 .prose th {
-  @apply bg-gray-100 border border-gray-300 px-4 py-2 text-left font-semibold;
+  @apply bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 px-4 py-2 text-left font-semibold;
 }
 
 .prose td {
-  @apply border border-gray-300 px-4 py-2;
+  @apply border border-gray-300 dark:border-gray-700 px-4 py-2;
+}
+
+.prose img {
+  @apply rounded-lg shadow-md;
+}
+
+.prose hr {
+  @apply border-gray-200 dark:border-gray-700 my-8;
+}
+
+/* Admonitions / Callouts (Docusaurus-style) */
+.prose .note,
+.prose .tip,
+.prose .info,
+.prose .warning,
+.prose .danger {
+  @apply p-4 mb-4 rounded-lg border-l-4;
+}
+
+.prose .note {
+  @apply bg-gray-50 dark:bg-gray-800 border-gray-400 dark:border-gray-600;
+}
+
+.prose .tip {
+  @apply bg-green-50 dark:bg-green-900/20 border-green-500;
+}
+
+.prose .info {
+  @apply bg-blue-50 dark:bg-blue-900/20 border-blue-500;
+}
+
+.prose .warning {
+  @apply bg-yellow-50 dark:bg-yellow-900/20 border-yellow-500;
+}
+
+.prose .danger {
+  @apply bg-red-50 dark:bg-red-900/20 border-red-500;
+}
+
+/* Dark mode transitions */
+* {
+  transition: background-color 0.2s ease, border-color 0.2s ease,
+    color 0.2s ease;
 }
