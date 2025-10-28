@@ -9,5 +9,11 @@
   },
   "keywords": [],
   "author": "delaudio",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "minuto": "^0.0.5"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "4.1.16"
+  }
 }

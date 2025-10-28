@@ -7,7 +7,16 @@
     "build": "minuto build",
     "serve": "minuto serve"
   },
-  "keywords": ["documentation", "minuto"],
+  "keywords": [
+    "documentation",
+    "minuto"
+  ],
   "author": "delaudio",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "minuto": "^0.0.5"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "4.1.16"
+  }
 }
