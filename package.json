@@ -14,7 +14,7 @@
     "markdown-it": "^14.0.0"
   },
   "bin": {
-    "minuto": "./bin/minuto.js"
+    "minuto": "bin/minuto.js"
   },
   "bugs": {
     "url": "https://github.com/delaudio/minuto/issues"
