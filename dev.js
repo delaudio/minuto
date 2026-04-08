@@ -4,7 +4,7 @@ const { spawn } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 
-const WATCH_DIRS = ['./content', './templates', './static', './styles'];
+const WATCH_DIRS = ['./content', './templates', './data', './collections', './static', './styles'];
 
 let building = false;
 let needsRebuild = false;

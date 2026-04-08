@@ -27,6 +27,15 @@ template: default
 
 This is a test.`
     );
+    fs.writeFileSync(
+      path.join(TEST_DIR, 'content', 'data-test.md'),
+      `---
+title: Data Test
+template: data-page
+---
+
+Using site data.`
+    );
 
     // Create test template
     fs.mkdirSync(path.join(TEST_DIR, 'templates'), { recursive: true });
@@ -37,6 +46,52 @@ This is a test.`
 <head><title>{{title}}</title></head>
 <body>{{{content}}}</body>
 </html>`
+    );
+    fs.writeFileSync(
+      path.join(TEST_DIR, 'templates', 'data-page.hbs'),
+      `<!DOCTYPE html>
+<html>
+<head><title>{{title}}</title></head>
+<body>
+<div class="site-name">{{site.data.site.name}}</div>
+{{{content}}}
+</body>
+</html>`
+    );
+    fs.writeFileSync(
+      path.join(TEST_DIR, 'templates', 'report.hbs'),
+      `<!DOCTYPE html>
+<html>
+<head><title>{{item.title}}</title></head>
+<body>
+<h1>{{item.title}}</h1>
+<div class="slug">{{slug}}</div>
+<div class="site-name">{{site.data.site.name}}</div>
+</body>
+</html>`
+    );
+
+    fs.mkdirSync(path.join(TEST_DIR, 'data', 'reports'), { recursive: true });
+    fs.writeFileSync(
+      path.join(TEST_DIR, 'data', 'site.json'),
+      JSON.stringify({ name: 'Fixture Site' }, null, 2)
+    );
+    fs.writeFileSync(
+      path.join(TEST_DIR, 'data', 'reports', 'songs.json'),
+      JSON.stringify({
+        'song-a': { title: 'Song A' },
+        'song-b': { title: 'Song B' }
+      }, null, 2)
+    );
+
+    fs.mkdirSync(path.join(TEST_DIR, 'collections'), { recursive: true });
+    fs.writeFileSync(
+      path.join(TEST_DIR, 'collections', 'reports.json'),
+      JSON.stringify({
+        source: 'reports.songs',
+        template: 'report',
+        output: 'reports/:slug.html'
+      }, null, 2)
     );
 
     // Create test static file
@@ -158,5 +213,26 @@ Test content`
     const content = fs.readFileSync(outputFile, 'utf8');
     expect(content).toContain('<header>Blog Header</header>');
     expect(content).toContain('<footer>Footer</footer>');
+  });
+
+  test('should expose data files to templates under site.data', () => {
+    const outputFile = path.join(TEST_BUILD_DIR, 'data-test.html');
+    expect(fs.existsSync(outputFile)).toBe(true);
+
+    const content = fs.readFileSync(outputFile, 'utf8');
+    expect(content).toContain('<div class="site-name">Fixture Site</div>');
+  });
+
+  test('should generate collection-driven pages from structured data', () => {
+    const outputA = path.join(TEST_BUILD_DIR, 'reports', 'song-a.html');
+    const outputB = path.join(TEST_BUILD_DIR, 'reports', 'song-b.html');
+
+    expect(fs.existsSync(outputA)).toBe(true);
+    expect(fs.existsSync(outputB)).toBe(true);
+
+    const contentA = fs.readFileSync(outputA, 'utf8');
+    expect(contentA).toContain('<h1>Song A</h1>');
+    expect(contentA).toContain('<div class="slug">song-a</div>');
+    expect(contentA).toContain('<div class="site-name">Fixture Site</div>');
   });
 });

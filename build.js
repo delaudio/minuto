@@ -26,6 +26,8 @@ Handlebars.registerHelper('baseUrl', function(path) {
 const CONTENT_DIR = './content';
 const TEMPLATES_DIR = './templates';
 const PARTIALS_DIR = './templates/partials';
+const DATA_DIR = './data';
+const COLLECTIONS_DIR = './collections';
 const STATIC_DIR = './static';
 const BUILD_DIR = './build';
 const STYLES_DIR = './styles';
@@ -105,6 +107,119 @@ function processMarkdown(filePath) {
     content: html,
     ...data
   };
+}
+
+function processYamlFile(filePath) {
+  const content = fs.readFileSync(filePath, 'utf8');
+  return matter(`---\n${content}\n---`).data;
+}
+
+function loadDataFiles(dir, baseDir = dir) {
+  if (!fs.existsSync(dir)) return {};
+
+  const result = {};
+  const entries = fs.readdirSync(dir, { withFileTypes: true });
+
+  for (const entry of entries) {
+    const fullPath = path.join(dir, entry.name);
+    const relativePath = path.relative(baseDir, fullPath);
+
+    if (entry.isDirectory()) {
+      result[entry.name] = loadDataFiles(fullPath, baseDir);
+      continue;
+    }
+
+    const ext = path.extname(entry.name).toLowerCase();
+    const key = path.basename(entry.name, ext);
+
+    if (ext === '.json') {
+      result[key] = JSON.parse(fs.readFileSync(fullPath, 'utf8'));
+    } else if (ext === '.yaml' || ext === '.yml') {
+      result[key] = processYamlFile(fullPath);
+    }
+  }
+
+  return result;
+}
+
+function getStructuredFiles(dir, fileList = []) {
+  if (!fs.existsSync(dir)) return fileList;
+
+  const entries = fs.readdirSync(dir, { withFileTypes: true });
+  for (const entry of entries) {
+    const filePath = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      getStructuredFiles(filePath, fileList);
+    } else if (['.json', '.yaml', '.yml'].includes(path.extname(entry.name).toLowerCase())) {
+      fileList.push(filePath);
+    }
+  }
+
+  return fileList;
+}
+
+function resolveDataPath(data, sourcePath) {
+  if (!sourcePath) return undefined;
+  const segments = String(sourcePath)
+    .split(/[/.]/)
+    .map(segment => segment.trim())
+    .filter(Boolean);
+
+  let current = data;
+  for (const segment of segments) {
+    current = current?.[segment];
+    if (current === undefined) return undefined;
+  }
+
+  return current;
+}
+
+function slugify(value) {
+  return String(value || '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
+}
+
+function normalizeCollectionItems(source) {
+  if (Array.isArray(source)) {
+    return source.map((item, index) => {
+      const fallbackSlug = `item-${index + 1}`;
+      const candidate = item && typeof item === 'object'
+        ? item.slug || item.id || item.title || fallbackSlug
+        : fallbackSlug;
+      return {
+        slug: slugify(candidate) || fallbackSlug,
+        item,
+      };
+    });
+  }
+
+  if (source && typeof source === 'object') {
+    return Object.entries(source).map(([key, value]) => ({
+      slug: slugify(key) || key,
+      item: value,
+      key,
+    }));
+  }
+
+  return [];
+}
+
+function applyOutputPattern(pattern, slug) {
+  const replaced = String(pattern || ':slug.html').replace(/:slug/g, slug);
+  return replaced.endsWith('.html') ? replaced : `${replaced}.html`;
+}
+
+function loadStructuredFile(filePath) {
+  const ext = path.extname(filePath).toLowerCase();
+  if (ext === '.json') {
+    return JSON.parse(fs.readFileSync(filePath, 'utf8'));
+  }
+  if (ext === '.yaml' || ext === '.yml') {
+    return processYamlFile(filePath);
+  }
+  throw new Error(`Unsupported structured data file: ${filePath}`);
 }
 
 // Get all content files recursively (markdown and HTML)
@@ -237,6 +352,7 @@ function build() {
 
   // Process content files (markdown and HTML)
   const sitemapUrls = [];
+  const site = { data: loadDataFiles(DATA_DIR) };
 
   if (fs.existsSync(CONTENT_DIR)) {
     console.log('📝 Processing content files...');
@@ -275,7 +391,7 @@ function build() {
         const template = loadTemplate(templateName);
 
         // Generate HTML
-        const html = template(data);
+        const html = template({ ...data, site });
 
         // Determine output path
         const relativePath = path.relative(CONTENT_DIR, filePath);
@@ -300,6 +416,50 @@ function build() {
           priority
         });
       }
+    });
+  }
+
+  if (fs.existsSync(COLLECTIONS_DIR)) {
+    console.log('🧱 Generating collection pages...');
+    const manifestFiles = getStructuredFiles(COLLECTIONS_DIR);
+
+    manifestFiles.forEach(filePath => {
+      const manifest = loadStructuredFile(filePath);
+      const templateName = manifest.template || 'default';
+      const template = loadTemplate(templateName);
+      const source = resolveDataPath(site.data, manifest.source);
+
+      if (source === undefined) {
+        throw new Error(`Collection source not found: ${manifest.source} (${filePath})`);
+      }
+
+      const items = normalizeCollectionItems(source);
+      const defaultBase = path.basename(filePath, path.extname(filePath));
+      const outputPattern = manifest.output || `${defaultBase}/:slug.html`;
+
+      items.forEach(({ slug, item, key }) => {
+        const outputRelative = applyOutputPattern(outputPattern, slug);
+        const outputPath = path.join(BUILD_DIR, outputRelative);
+        ensureDir(path.dirname(outputPath));
+
+        const html = template({
+          ...manifest,
+          item,
+          slug,
+          key,
+          site,
+        });
+
+        fs.writeFileSync(outputPath, html);
+        console.log(`  ✓ ${path.relative('.', filePath)} → ${path.relative(BUILD_DIR, outputPath)}`);
+
+        const url = '/' + outputRelative.replace(/\\/g, '/');
+        sitemapUrls.push({
+          url: url.replace('.html', ''),
+          lastmod: new Date().toISOString().split('T')[0],
+          priority: '0.6',
+        });
+      });
     });
   }
 

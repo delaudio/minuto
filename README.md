@@ -101,6 +101,8 @@ npx minuto init my-docs --template docs
 .
 ├── content/          # Your markdown files
 │   └── index.md
+├── data/             # Optional JSON/YAML data files exposed as site.data
+├── collections/      # Optional collection manifests for data-driven pages
 ├── templates/        # Handlebars templates
 │   ├── default.hbs
 │   └── partials/    # Optional partials
@@ -142,6 +144,7 @@ Available variables:
 - `{{{content}}}` - Rendered markdown HTML
 - `{{title}}` - From frontmatter
 - `{{date}}` - From frontmatter
+- `{{site.data}}` - Data loaded from the optional `data/` directory
 - Any custom frontmatter fields
 
 ### Partials
@@ -163,6 +166,53 @@ Use in templates:
 ## Static Assets
 
 Put your CSS, JavaScript, images, etc. in the `static/` directory. They'll be copied to the build output as-is.
+
+## Data Files
+
+If a project includes a `data/` directory, Minuto loads `.json`, `.yaml`, and `.yml` files and exposes them under `site.data`.
+
+Example:
+
+```text
+data/
+  site.json
+  reports/
+    songs.json
+```
+
+This becomes available in templates as:
+
+```handlebars
+{{site.data.site.name}}
+{{site.data.reports.songs}}
+```
+
+## Collection-Driven Pages
+
+If a project includes a `collections/` directory, each JSON/YAML manifest can generate multiple pages from a dataset in `site.data`.
+
+Example manifest:
+
+```json
+{
+  "source": "reports.songs",
+  "template": "report",
+  "output": "reports/:slug.html"
+}
+```
+
+Given object entries like `song-a` and `song-b`, Minuto will generate:
+
+```text
+build/reports/song-a.html
+build/reports/song-b.html
+```
+
+Within the template, Minuto exposes:
+
+- `item` - current collection item
+- `slug` - generated slug for the page
+- `site.data` - global loaded data
 
 ## Features
 
