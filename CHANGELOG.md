@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.0.7] - 2026-04-09
+
+### Added
+
+- Native `data/` directory support for `.json`, `.yaml`, and `.yml` files exposed as `site.data`
+- `collections/` manifests for collection-driven page generation from structured data
+- Watch mode support for `data/` and `collections/`
+- Test coverage and documentation for structured data and collection pages
+
 ## [0.0.1] - 2025-10-27
 
 ### Added
